@@ -35,13 +35,15 @@ python --version
 ### ✅ Bước 2: Kiểm tra Python đã cài
 
 Mở **PowerShell** hoặc **CMD**, gõ:
+```bash
 python -m ensurepip --upgrade
 python -m pip install --upgrade pip
 python -m pip install pygame
-
+```
+```bash
 Nếu gõ python không hoạt động, thay bằng py
 py -m ensurepip --upgrade
 py -m pip install --upgrade pip
 py -m pip install pygame
+```
 
-```powershell
