@@ -7,9 +7,25 @@ class Snake:
             [5, 10],
             [4, 10],
             [3, 10]
-        ]  # 3 đoạn, mỗi đoạn là [x, y] trên lưới
+        ]
+        self.direction = "RIGHT"
 
     def draw(self, screen):
         for segment in self.body:
-            rect = pygame.Rect(segment[0]*CELL_SIZE, segment[1]*CELL_SIZE, CELL_SIZE, CELL_SIZE)
+            rect = pygame.Rect(segment[0] * CELL_SIZE, segment[1] * CELL_SIZE, CELL_SIZE, CELL_SIZE)
             pygame.draw.rect(screen, GREEN, rect)
+
+    def move(self):
+        head = self.body[0].copy()
+
+        if self.direction == "RIGHT":
+            head[0] += 1
+        elif self.direction == "LEFT":
+            head[0] -= 1
+        elif self.direction == "UP":
+            head[1] -= 1
+        elif self.direction == "DOWN":
+            head[1] += 1
+
+        self.body.insert(0, head)
+        self.body.pop()  # luôn giữ 3 đoạn
