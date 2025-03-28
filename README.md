@@ -47,4 +47,5 @@ py -m pip install --upgrade pip
 py -m pip install pygame
 ```
 # LƯU Ý: MỌI NGƯỜI COMMIT-PUSH, ĐỪNG MERGE VÔ MAIN NHA, SAU MỖI LẦN COMMIT QUAN TRỌNG THÌ NHỚ NOTE VÀO TRƯỚC KHI COMMIT-PUSH NHA
+# LƯU Ý 2: BRANCH AI THÌ LÀM NGƯỜI ĐÓ TUI CÓ ĐẶT TÊN RỒI NÊN NHỚ NHA
 
