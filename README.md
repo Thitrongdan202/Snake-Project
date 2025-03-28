@@ -46,5 +46,5 @@ py -m ensurepip --upgrade
 py -m pip install --upgrade pip
 py -m pip install pygame
 ```
-# LƯU Ý: MỌI NGƯỜI COMMIT-PUSH, ĐỪNG MERGE VÔ MAIN NHA
+# LƯU Ý: MỌI NGƯỜI COMMIT-PUSH, ĐỪNG MERGE VÔ MAIN NHA, SAU MỖI LẦN COMMIT QUAN TRỌNG THÌ NHỚ NOTE VÀO TRƯỚC KHI COMMIT-PUSH NHA
 
