@@ -12,6 +12,9 @@ def main():
 
     snake = Snake()
     food = Food()
+    score = 0  # Khởi tạo điểm số ban đầu
+    font = pygame.font.SysFont('Arial', 24)  # Font để hiển thị điểm số
+
 
     running = True
     while running:
@@ -34,14 +37,20 @@ def main():
         # Nếu đầu rắn chạm mồi → đổi vị trí mồi, không tăng độ dài
         if snake.body[0] == food.position:
             food.random_position()
+            score += 1  # Cộng thêm điểm mỗi lần ăn mồi
 
         # Luôn di chuyển rắn
         snake.move()
 
-        # Vẽ
+        # Vẽ màn hình
         screen.fill(BG_COLOR)
         snake.draw(screen)
         food.draw(screen)
+        # Vẽ điểm số
+        score_text = font.render(f"Score: {score}", True, (255, 255, 255))  # Trắng
+        screen.blit(score_text, (10, 10))  # Hiển thị góc trên bên trái
+
+
         pygame.display.flip()
 
     pygame.quit()
