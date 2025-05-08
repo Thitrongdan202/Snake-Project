@@ -1,6 +1,6 @@
 import pygame
 import sys
-from config import SCREEN_WIDTH, SCREEN_HEIGHT, BG_COLOR, FPS
+from config import SCREEN_WIDTH, SCREEN_HEIGHT, BG_COLOR, FPS, POINTS_TO_GROW
 from snake import Snake
 from food import Food
 
@@ -12,6 +12,9 @@ def main():
 
     snake = Snake()
     food = Food()
+    score = 0  # Khởi tạo điểm số ban đầu
+    font = pygame.font.SysFont('Arial', 24)  # Font để hiển thị điểm số
+
 
     running = True
     while running:
@@ -31,17 +34,28 @@ def main():
                 elif event.key == pygame.K_d and snake.direction != "LEFT":
                     snake.direction = "RIGHT"
 
-        # Nếu đầu rắn chạm mồi → đổi vị trí mồi, không tăng độ dài
+        grow = False
+
+        # Nếu đầu rắn chạm mồi → đổi vị trí mồi, TĂNG độ dài
         if snake.body[0] == food.position:
             food.random_position()
+            score += 1  # Cộng thêm điểm mỗi lần ăn mồi
+            # Nếu điểm đạt bội số của POINTS_TO_GROW → rắn dài ra
+            if score % POINTS_TO_GROW == 0:
+                grow = True
 
-        # Luôn di chuyển rắn
-        snake.move()
+        # Di chuyển rắn, truyền tham số grow
+        snake.move(grow=grow)
 
-        # Vẽ
+        # Vẽ màn hình
         screen.fill(BG_COLOR)
         snake.draw(screen)
         food.draw(screen)
+        # Vẽ điểm số
+        score_text = font.render(f"Score: {score}", True, (255, 255, 255))  # Trắng
+        screen.blit(score_text, (10, 10))  # Hiển thị góc trên bên trái
+
+
         pygame.display.flip()
 
     pygame.quit()
