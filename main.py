@@ -36,7 +36,7 @@ def main():
 
         grow = False
 
-        # Nếu đầu rắn chạm mồi → đổi vị trí mồi, TĂNG độ dài
+        # Nếu đầu rắn chạm mồi → đổi vị trí mồi, TĂNG điểm, TĂNG độ dài
         if snake.body[0] == food.position:
             food.random_position()
             score += 1  # Cộng thêm điểm mỗi lần ăn mồi
@@ -51,10 +51,10 @@ def main():
         screen.fill(BG_COLOR)
         snake.draw(screen)
         food.draw(screen)
+
         # Vẽ điểm số
         score_text = font.render(f"Score: {score}", True, (255, 255, 255))  # Trắng
         screen.blit(score_text, (10, 10))  # Hiển thị góc trên bên trái
-
 
         pygame.display.flip()
 
