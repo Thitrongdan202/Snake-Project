@@ -16,4 +16,7 @@ BLACK = (0, 0, 0)
 BG_COLOR = (30, 30, 30)
 
 # Tốc độ game (frame/giây)
-FPS = 10
+FPS = 5
+
+# Số điểm cần để rắn dài thêm 1 đoạn (có thể đổi thành 4, 5...)
+POINTS_TO_GROW = 1
