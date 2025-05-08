@@ -15,7 +15,7 @@ class Snake:
             rect = pygame.Rect(segment[0] * CELL_SIZE, segment[1] * CELL_SIZE, CELL_SIZE, CELL_SIZE)
             pygame.draw.rect(screen, GREEN, rect)
 
-    def move(self):
+    def move(self, grow=False):
         head = self.body[0].copy()
 
         if self.direction == "RIGHT":
@@ -28,4 +28,6 @@ class Snake:
             head[1] += 1
 
         self.body.insert(0, head)
-        self.body.pop()  # luôn giữ 3 đoạn
+        # self.body.pop()  # luôn giữ 3 đoạn
+        if not grow:
+            self.body.pop()  # Xoá đuôi nếu không ăn mồi
