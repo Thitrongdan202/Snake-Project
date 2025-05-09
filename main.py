@@ -1,8 +1,7 @@
-import pygame
-import sys
-from config import SCREEN_WIDTH, SCREEN_HEIGHT, BG_COLOR, FPS
-from snake import Snake
-from food import Food
+import pygame, sys
+from config import SCREEN_WIDTH, SCREEN_HEIGHT, BG_COLOR, FPS, POINTS_TO_GROW
+from snake  import Snake
+from food   import Food
 
 def main():
     pygame.init()
@@ -11,16 +10,15 @@ def main():
     clock = pygame.time.Clock()
 
     snake = Snake()
-    food = Food()
-    score = 0  # Khởi tạo điểm số ban đầu
-    font = pygame.font.SysFont('Arial', 24)  # Font để hiển thị điểm số
-
+    food  = Food()
+    score = 0
+    font  = pygame.font.SysFont('Arial', 24)
 
     running = True
     while running:
         clock.tick(FPS)
 
-        # Bắt phím
+        # ── Bắt phím ──────────────────────────────────────
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -33,25 +31,34 @@ def main():
                     snake.direction = "LEFT"
                 elif event.key == pygame.K_d and snake.direction != "LEFT":
                     snake.direction = "RIGHT"
+        # ─────────────────────────────────────────────────
 
-        # Nếu đầu rắn chạm mồi → đổi vị trí mồi, không tăng độ dài
+        grow = False  # mặc định không dài ra
+
+        # Ăn mồi
         if snake.body[0] == food.position:
             food.random_position()
-            score += 1  # Cộng thêm điểm mỗi lần ăn mồi
+            score += 1
 
-        # Luôn di chuyển rắn
-        snake.move()
+            # Đủ điểm để dài ra?
+            if score % POINTS_TO_GROW == 0:
+                grow = True
 
-        # Vẽ màn hình
+        # Di chuyển rắn (truyền cờ grow)
+        snake.move(grow=grow)
+
+        # ── Vẽ khung hình ────────────────────────────────
         screen.fill(BG_COLOR)
         snake.draw(screen)
         food.draw(screen)
-        # Vẽ điểm số
-        score_text = font.render(f"Score: {score}", True, (255, 255, 255))  # Trắng
-        screen.blit(score_text, (10, 10))  # Hiển thị góc trên bên trái
 
+        # Hiển thị điểm
+        score_text  = font.render(f"Score: {score}", True, (255, 255, 255))
+        score_rect  = score_text.get_rect(midtop=(SCREEN_WIDTH // 2, 10))
+        screen.blit(score_text, score_rect)
 
         pygame.display.flip()
+        # ────────────────────────────────────────────────
 
     pygame.quit()
     sys.exit()
