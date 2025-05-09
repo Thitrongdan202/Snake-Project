@@ -1,64 +1,68 @@
 import pygame, sys
-from config import SCREEN_WIDTH, SCREEN_HEIGHT, BG_COLOR, FPS, POINTS_TO_GROW
-from snake  import Snake
-from food   import Food
+from config import (
+    SCREEN_WIDTH, SCREEN_HEIGHT, BG_COLOR,
+    FPS, POINTS_TO_GROW
+)
+from snake import Snake
+from food  import Food
+from walls import Walls
 
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption("Snake Game")
+    pygame.display.set_caption("Snake – Walls & Grow")
     clock = pygame.time.Clock()
 
-    snake = Snake()
-    food  = Food()
+    snake, walls, food = Snake(), Walls(), Food()
+    food.random_position(forbidden=set(map(tuple, walls.blocks + snake.body)))
+
     score = 0
     font  = pygame.font.SysFont('Arial', 24)
-
     running = True
+
     while running:
         clock.tick(FPS)
 
-        # ── Bắt phím ──────────────────────────────────────
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+        # ── INPUT ───────────────────────────────────────────
+        for e in pygame.event.get():
+            if e.type == pygame.QUIT:
                 running = False
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_w and snake.direction != "DOWN":
+            elif e.type == pygame.KEYDOWN:
+                if e.key in (pygame.K_w, pygame.K_UP)    and snake.direction != "DOWN":
                     snake.direction = "UP"
-                elif event.key == pygame.K_s and snake.direction != "UP":
+                elif e.key in (pygame.K_s, pygame.K_DOWN)  and snake.direction != "UP":
                     snake.direction = "DOWN"
-                elif event.key == pygame.K_a and snake.direction != "RIGHT":
+                elif e.key in (pygame.K_a, pygame.K_LEFT)  and snake.direction != "RIGHT":
                     snake.direction = "LEFT"
-                elif event.key == pygame.K_d and snake.direction != "LEFT":
+                elif e.key in (pygame.K_d, pygame.K_RIGHT) and snake.direction != "LEFT":
                     snake.direction = "RIGHT"
-        # ─────────────────────────────────────────────────
+        # ────────────────────────────────────────────────────
 
-        grow = False  # mặc định không dài ra
-
-        # Ăn mồi
-        if snake.body[0] == food.position:
-            food.random_position()
+        grow = False
+        if snake.body[0] == food.position:         # ăn mồi
             score += 1
+            grow = (score % POINTS_TO_GROW == 0)
+            food.random_position(
+                forbidden=set(map(tuple, walls.blocks + snake.body))
+            )
 
-            # Đủ điểm để dài ra?
-            if score % POINTS_TO_GROW == 0:
-                grow = True
-
-        # Di chuyển rắn (truyền cờ grow)
         snake.move(grow=grow)
 
-        # ── Vẽ khung hình ────────────────────────────────
+        if walls.is_collision(snake.body[0]):      # đâm tường
+            print("Game Over – hit wall!")
+            running = False
+
+        # ── VẼ FRAME ───────────────────────────────────────
         screen.fill(BG_COLOR)
+        walls.draw(screen)
         snake.draw(screen)
         food.draw(screen)
 
-        # Hiển thị điểm
-        score_text  = font.render(f"Score: {score}", True, (255, 255, 255))
-        score_rect  = score_text.get_rect(midtop=(SCREEN_WIDTH // 2, 10))
-        screen.blit(score_text, score_rect)
+        txt = font.render(f"Score: {score}", True, (255, 255, 255))
+        screen.blit(txt, txt.get_rect(midtop=(SCREEN_WIDTH // 2, 10)))
 
         pygame.display.flip()
-        # ────────────────────────────────────────────────
+        # ────────────────────────────────────────────────────
 
     pygame.quit()
     sys.exit()
