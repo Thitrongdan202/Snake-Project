@@ -15,4 +15,4 @@ WALL_COLOR = (0, 255, 255) # viền (cyan)
 # ───── CẤU HÌNH GAME ─────
 FPS            = 10         # tốc độ khung hình
 POINTS_TO_GROW = 3         # đủ 3 điểm rắn dài 1 đoạn
-WALL_THICKNESS = 6         # độ dày nét viền (px)
+WALL_THICKNESS = 7         # độ dày nét viền (px)
