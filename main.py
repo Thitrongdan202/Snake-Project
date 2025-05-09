@@ -98,7 +98,6 @@ def main():
         walls.draw(screen)
         snake.draw(screen)
         food.draw(screen)
-
         score_surf = font.render(f"Score: {score}", True, (255, 255, 255))
         screen.blit(score_surf, score_surf.get_rect(midtop=(SCREEN_WIDTH // 2, 10)))
 
