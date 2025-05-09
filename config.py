@@ -1,19 +1,21 @@
-# Kích thước mỗi ô (pixel)
-CELL_SIZE = 20
 
-# Số ô theo chiều ngang và dọc
-CELL_WIDTH = 30
+# Kích thước mỗi ô lưới (pixel)
+CELL_SIZE   = 20
+
+# Kích thước lưới (số ô)
+CELL_WIDTH  = 30
 CELL_HEIGHT = 20
 
-# Kích thước màn hình
-SCREEN_WIDTH = CELL_WIDTH * CELL_SIZE
+# Kích thước cửa sổ
+SCREEN_WIDTH  = CELL_WIDTH  * CELL_SIZE
 SCREEN_HEIGHT = CELL_HEIGHT * CELL_SIZE
 
-# Màu sắc
-GREEN = (0, 255, 0)
-RED = (255, 0, 0)
-BLACK = (0, 0, 0)
-BG_COLOR = (30, 30, 30)
+# Màu sắc RGB
+GREEN      = (0, 255, 0)       # rắn
+RED        = (255, 0, 0)       # mồi
+BG_COLOR   = (30, 30, 30)      # nền
+WALL_COLOR = (255, 215, 0)   # vàng gold
+WALL_THICKNESS = 5        # pixel, muốn mỏng/đậm chỉnh số này
 
-# Tốc độ game (frame/giây)
+# Tốc độ khung hình
 FPS = 10
