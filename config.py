@@ -13,6 +13,6 @@ BG_COLOR   = (30, 30, 30)  # nền
 WALL_COLOR = (0, 255, 255) # viền (cyan)
 
 # ───── CẤU HÌNH GAME ─────
-FPS            = 8         # tốc độ khung hình
+FPS            = 10         # tốc độ khung hình
 POINTS_TO_GROW = 3         # đủ 3 điểm rắn dài 1 đoạn
 WALL_THICKNESS = 6         # độ dày nét viền (px)
