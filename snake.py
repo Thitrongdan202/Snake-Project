@@ -4,8 +4,12 @@ from config import CELL_SIZE, GREEN
 class Snake:
     """Rắn khởi đầu 3 đoạn, hỗ trợ grow."""
     def __init__(self):
-        self.body      = [[5, 10], [4, 10], [3, 10]]
-        self.direction = "RIGHT"
+            self.body = [
+                [5, 10],
+                [4, 10],
+                [3, 10]
+            ]
+            self.direction = "RIGHT"
 
     def draw(self, screen):
         for x, y in self.body:
