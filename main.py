@@ -14,7 +14,7 @@ def show_game_over(screen, score):
     big   = pygame.font.SysFont("Tahoma", 48,  bold=True)
     mid   = pygame.font.SysFont("Tahoma", 36,  bold=True)
     small = pygame.font.SysFont("Tahoma", 24)
-
+# tạo chữ chơi lại - kết thúc
     lines = [
         (big,   "TRÒ CHƠI KẾT THÚC",                (255,  50,  50)),
         (mid,   "GAME  OVER",                       (255, 255, 255)),
@@ -33,7 +33,7 @@ def show_game_over(screen, score):
     pygame.display.flip()
 # ─────────────────────────────────────────────
 
-
+#main
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
