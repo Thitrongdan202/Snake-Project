@@ -16,6 +16,6 @@ BG_COLOR   = (30, 30, 30)  # nền
 FPS            = 10         # tốc độ khung hình
 POINTS_TO_GROW = 3         # đủ 3 điểm rắn dài 1 đoạn
 
-# Cấu hình tường 
-WALL_COLOR = (0, 255, 255) # viền (cyan)
+# Cấu hình tường
+WALL_COLOR = (255, 255, 255)   # trắng
 WALL_THICKNESS = 7         # độ dày nét viền (px)
