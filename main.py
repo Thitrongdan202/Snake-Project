@@ -37,7 +37,7 @@ def show_game_over(screen, score):
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption("Snake – Walls & Grow")
+    pygame.display.set_caption("Rắn ăn mồi")
     clock = pygame.time.Clock()
 
     snake, walls, food = Snake(), Walls(), Food()
