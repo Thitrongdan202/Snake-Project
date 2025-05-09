@@ -91,7 +91,7 @@ def main():
         # Đâm tường => Game Over
         if walls.is_collision(snake.body[0]):
             game_over = True
-            continue
+            continue #chơi lại
 
         # ─── VẼ FRAME ─────────────────────────────
         screen.fill(BG_COLOR)
